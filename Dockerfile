@@ -38,10 +38,11 @@ RUN mkdir -p ${COMFYUI_PATH}/user/__manager && \
 COPY video_ltx2.3_ia2v_-_workingprineai.json \
      ${COMFYUI_PATH}/user/default/workflows/ltx2_ia2v.json
 
-# Copy startup script
+# Copy model download script
 COPY start.sh /download_models.sh
 RUN chmod +x /download_models.sh
 
-# Prepend model download to the base image's own startup
-RUN echo '#!/bin/bash\n/download_models.sh\nexec /start.sh "$@"' > /custom_start.sh && chmod +x /custom_start.sh
-CMD ["/custom_start.sh"]
+# Wrap the base image's entrypoint: download models first, then run original startup
+RUN mv /start.sh /original_start.sh 2>/dev/null; \
+    printf '#!/bin/bash\n/download_models.sh\nexec /original_start.sh "$@"\n' > /start.sh && \
+    chmod +x /start.sh
