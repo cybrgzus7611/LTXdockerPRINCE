@@ -35,7 +35,7 @@ RUN mkdir -p ${COMFYUI_PATH}/user/__manager && \
     > ${COMFYUI_PATH}/user/__manager/config.ini
 
 # Copy workflow
-COPY video_ltx2_3_ia2v_-_workingprineai.json \
+COPY video_ltx2.3_ia2v_-_workingprineai.json \
      ${COMFYUI_PATH}/user/default/workflows/ltx2_ia2v.json
 
 # Copy startup script
