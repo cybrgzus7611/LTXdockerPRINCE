@@ -1,6 +1,10 @@
 #!/bin/bash
 set -e
-
+mkdir -p /workspace/runpod-slim/ComfyUI/models/checkpoints
+mkdir -p /workspace/runpod-slim/ComfyUI/models/loras
+mkdir -p /workspace/runpod-slim/ComfyUI/models/latent_upscale_models
+mkdir -p /workspace/runpod-slim/ComfyUI/models/vae
+mkdir -p /workspace/runpod-slim/ComfyUI/models/text_encoders
 MODELS_PATH=/workspace/runpod-slim/ComfyUI/models
 
 download_if_missing() {
