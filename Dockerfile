@@ -39,7 +39,9 @@ COPY video_ltx2.3_ia2v_-_workingprineai.json \
      ${COMFYUI_PATH}/user/default/workflows/ltx2_ia2v.json
 
 # Copy startup script
-COPY start.sh /start.sh
-RUN chmod +x /start.sh
+COPY start.sh /download_models.sh
+RUN chmod +x /download_models.sh
 
-CMD ["/start.sh"]
+# Prepend model download to the base image's own startup
+RUN echo '#!/bin/bash\n/download_models.sh\nexec /start.sh "$@"' > /custom_start.sh && chmod +x /custom_start.sh
+CMD ["/custom_start.sh"]
