@@ -52,4 +52,4 @@ download_if_missing \
     "https://huggingface.co/Comfy-Org/ltx-2/resolve/main/split_files/text_encoders/gemma_3_12B_it_fp4_mixed.safetensors"
 
 echo "All models ready. Starting ComfyUI..."
-exec python /workspace/runpod-slim/ComfyUI/main.py --listen 0.0.0.0 --port 3000
+exec python3 /workspace/runpod-slim/ComfyUI/main.py --listen 0.0.0.0 --port 3000
